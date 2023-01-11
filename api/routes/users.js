@@ -76,6 +76,27 @@ router.get("/find/:id", async (req,res)=>{
 })
 
 
+//GET All
+
+router.get("/", verifyToken ,async (req,res)=>{
+    const query = req.query.new;  //By query we mean users?new=true
+    
+    if(req.user.isAdmin){
+        try{
+            const users = query ? await User.find().sort({_id:-1}).limit(10) : await User.find(); //sort({_id:-1}) it will sort from last to first and will return the latest data.
+            res.status(200).json(users)
+        }
+        catch(err){
+            res.status(500).json(err)
+        }
+    }
+
+    else{
+        res.status(403).json("You are not allowed to see all users!");
+    }
+})
+
+
 
 
 module.exports = router
