@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const authRoute = require('./routes/auth')
 
 
 
@@ -24,7 +25,8 @@ app.use(express.json());
 
 ////////////////////////Router Paths///////////////////////////////////
 
-
+//Path for auth router file
+app.use("/api/auth", authRoute);
 
 
 
