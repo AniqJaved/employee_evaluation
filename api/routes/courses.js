@@ -47,4 +47,16 @@ router.put("/:id", verifyToken ,async (req,res)=>{
 })
 
 
+//GET COURSE
+router.get("/find/:id", verifyToken, async (req, res) =>{
+    try{
+        const course = await Course.findById(req.params.id);
+        res.status(200).json(course);
+    }
+    catch(err){
+        res.status(500).json(err);
+    }
+}); 
+
+
 module.exports = router
