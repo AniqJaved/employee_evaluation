@@ -21,6 +21,30 @@ router.post("/", verifyToken, async(req,res) => {
     }
 })
 
+//UPDATE COURSE
+
+router.put("/:id", verifyToken ,async (req,res)=>{
+    if(req.user.isAdmin){
+        try{
+            const updatedCourse = await Course.findByIdAndUpdate(
+                req.params.id, 
+            {
+                $set: req.body,
+            },
+            {new: true}                 // $set will update the entries in database but will not return the updated entries. new: true will be returing the updated entries.
+            );
+
+            res.status(200).json(updatedCourse)
+        }
+        catch(err){
+            res.status(500).json(err)
+        }
+    }
+
+    else{
+        res.status(403).json("You not allowed!");
+    }
+})
 
 
 module.exports = router
