@@ -22,6 +22,19 @@ router.post("/", verifyToken, async(req,res) => {
     }
 })
 
+//GET WORKLOAD
+
+router.get("/find/:id", async (req,res)=>{
+    try{
+        const workload = await Workload.findById(req.params.id);
+        const workloadInfo = workload._doc; 
+        res.status(200).json(workloadInfo)
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
+
 
 
 
