@@ -58,5 +58,21 @@ router.get("/find/:id", verifyToken, async (req, res) =>{
     }
 }); 
 
+//GET ALL COURSES
+router.get("/", verifyToken, async(req,res)=>{
+    if(req.user.isAdmin){
+        try{
+            const courses = await Course.find();
+            res.status(200).json(courses.reverse());
+        }
+        catch(err){
+            res.status(500).json(err);
+        }
+    }
+    else{
+        res.status(403).json("You are not allowed!");
+    }
+})
+
 
 module.exports = router
