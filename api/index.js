@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
+const courseRoute = require('./routes/courses')
 
 
 
@@ -31,6 +32,9 @@ app.use("/api/auth", authRoute);
 
 //Path for user router file
 app.use("/api/users", userRoute);
+
+//Path for user router file
+app.use("/api/courses", courseRoute);
 
 
 
