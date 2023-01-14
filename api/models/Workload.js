@@ -22,11 +22,6 @@ const WorkloadSchema = new mongoose.Schema(
                 type: Number
             }                        
         }],
-        research: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'Research'
-        },
     },
     {timestamps: true}
 );

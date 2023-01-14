@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const courseRoute = require('./routes/courses')
+const workloadRoute = require('./routes/workload')
 
 
 
@@ -35,6 +36,9 @@ app.use("/api/users", userRoute);
 
 //Path for user router file
 app.use("/api/courses", courseRoute);
+
+//Path for worload router file
+app.use("/api/workload", workloadRoute);
 
 
 
