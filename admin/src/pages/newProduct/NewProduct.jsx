@@ -1,10 +1,11 @@
 import { useContext, useState, useHistory } from "react";
+import {useNavigate} from "react-router-dom";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import "./newProduct.css";
 
 export default function NewProduct() {
-
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
 
   const {dispatch} = useContext(MovieContext)
@@ -18,9 +19,8 @@ export default function NewProduct() {
 
   const HandleSubmit = (e) =>{
     e.preventDefault();
-    //const history = useHistory();
     createMovie(movie, dispatch);
-    //history.push('/courses');
+    navigate('/courses')
   }
 
   return (

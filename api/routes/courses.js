@@ -60,7 +60,7 @@ router.get("/find/:id", verifyToken, async (req, res) =>{
 
 //GET ALL COURSES
 router.get("/", verifyToken, async(req,res)=>{
-    if(req.user.isAdmin){
+    if(req.user){
         try{
             const courses = await Course.find();
             res.status(200).json(courses.reverse());
