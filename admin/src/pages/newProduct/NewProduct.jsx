@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext, useState, useHistory } from "react";
+import { createMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 import "./newProduct.css";
 
 export default function NewProduct() {
 
   const [movie, setMovie] = useState(null);
-  const [img, setImg] = useState(null);
-  const [imgTitle, setImgTitle] = useState(null);
-  const [imgSm, setImgSm] = useState(null);
-  const [trailer, setTrailer] = useState(null);
-  const [video, setVideo] = useState(null);
+
+  const {dispatch} = useContext(MovieContext)
 
   const handleChange = (e) =>{
     const value = e.target.value;
@@ -16,6 +15,13 @@ export default function NewProduct() {
   }
 
   console.log(movie)
+
+  const HandleSubmit = (e) =>{
+    e.preventDefault();
+    //const history = useHistory();
+    createMovie(movie, dispatch);
+    //history.push('/courses');
+  }
 
   return (
     <div className="newProduct">
@@ -49,7 +55,7 @@ export default function NewProduct() {
           <label>Program</label>
           <input type="text" placeholder="Program" name="program" onChange={handleChange}/>
         </div>
-        <button className="addProductButton">Create</button>
+        <button onClick={HandleSubmit} className="addProductButton">Create</button>
       </form>
     </div>
   );

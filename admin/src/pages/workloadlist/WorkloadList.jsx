@@ -66,7 +66,7 @@ export default function WorkloadList() {
               {params.row.courseDetails.map((courseDetail, index) => {
                 return (
                   <li key={index} className="courseListli">
-                    {courseDetail.courseId ? courseDetail.courseId.title : 'No course assigned'}
+                    {index+1+". "}{courseDetail.courseId ? courseDetail.courseId.title : 'No course assigned'}
                   </li>
                   );
                 })

@@ -2,11 +2,16 @@ import axios from "axios";
 import { 
     getMoviesFailure, 
     getMoviesStart, 
-    getMoviesSuccess, 
+    getMoviesSuccess,
+    createMovieStart, 
+    createMovieSuccess, 
+    createMovieFailure, 
     deleteMovieStart, 
     deleteMovieSuccess, 
     deleteMovieFailure
 } from "./MovieActions";
+
+//GET ALL MOVIES
 
 export const getMovies = async (dispatch) => {
     dispatch(getMoviesStart());
@@ -25,6 +30,27 @@ export const getMovies = async (dispatch) => {
         dispatch(getMoviesFailure());
     }
 }
+
+//CREATE MOVIE
+
+export const createMovie = async (movie, dispatch) => {
+    dispatch(createMovieStart());
+
+    try{
+        const res = await axios.post("/courses", movie, {
+            headers: { 
+                token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,  //Here we are fetching jwt token from the local storage that we have stored in case of the AuthContext
+            },
+        });
+
+        //console.log(localStorage.getItem("user"));
+        dispatch(createMovieSuccess(res.data));
+    }
+    catch(err){
+        dispatch(createMovieFailure());
+    }
+}
+
 
 
 //DELETE MOVIE
