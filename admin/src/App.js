@@ -7,6 +7,7 @@ import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
+import WorkloadList from "./pages/workloadlist/WorkloadList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
@@ -41,8 +42,11 @@ function App() {
                 <Route path="/newUser">
                   <NewUser />
                 </Route>
-                <Route path="/movies">
+                <Route path="/courses">
                   <ProductList />
+                </Route>
+                <Route path="/workloads">
+                  <WorkloadList />
                 </Route>
                 <Route path="/product/:productId">
                   <Product />

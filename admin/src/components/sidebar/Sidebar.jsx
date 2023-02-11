@@ -47,16 +47,18 @@ export default function Sidebar() {
                 Users
               </li>
             </Link>
-            <Link to="/movies" className="link">
+            <Link to="/courses" className="link">
               <li className="sidebarListItem">
                 <PlayCircleOutline className="sidebarIcon" />
                 Courses
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Transactions
-            </li>
+            <Link to="/workloads" className="link">
+              <li className="sidebarListItem">
+                <AttachMoney className="sidebarIcon" />
+                Workloads
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports

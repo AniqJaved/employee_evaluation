@@ -26,4 +26,12 @@ const WorkloadSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
+//Virtual field-> This field will be virtual as it will not be hard coded in any database model.
+WorkloadSchema.virtual('courses', {
+    ref: 'Course',
+    localField: 'courseDetails[0].courseId',
+    foreignField: '_id',
+    justOne: true
+  });
+
 module.exports = mongoose.model("Workload", WorkloadSchema)
