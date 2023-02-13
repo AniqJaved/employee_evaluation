@@ -13,9 +13,28 @@ const WorkloadReducer = (state, action) => {
                 isFetching: false,
                 error: false
             };
-        case "GET_WORKLOADS_FAILURE":
+        case "GET_WORKLOAD_FAILURE":
             return {
                 workload: [],
+                isFetching: false,
+                error: true
+            };
+        
+        case "CREATE_WORKLOAD_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false
+            };
+        case "CREATE_WORKLOAD_SUCCESS":
+            return {
+                workload: [...state.workload, action.payload],
+                isFetching: false,
+                error: false
+            };
+        case "CREATE_WORKLOAD_FAILURE":
+            return {
+                ...state,
                 isFetching: false,
                 error: true
             };

@@ -8,21 +8,12 @@ const verifyToken = require("../verifyToken");
 
 //ADD WORKLOAD
 router.post("/", verifyToken, async(req,res) => {
-    if(req.user.isAdmin){
-        // const newworkload = new Workload({
-        //     ...req.body,
-        //     owner: req.user._id
-        // })
+    try{
         const newworkload = new Workload(req.body);
-        try{
-            const savedWorkload = await newworkload.save();
-            res.status(201).json(savedWorkload);
-        } catch(err){
-            res.status(500).json(err)
-        }
-    }
-    else{
-        res.status(403).json("You are not allowed!")
+        const savedWorkload = await newworkload.save();
+        res.status(201).json(savedWorkload);
+    } catch(err){
+        res.status(500).json(err)
     }
 })
 

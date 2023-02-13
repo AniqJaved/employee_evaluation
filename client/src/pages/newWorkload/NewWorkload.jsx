@@ -1,25 +1,27 @@
 import { useContext, useState, useHistory } from "react";
-import { useNavigate } from "react-router-dom";
-import { createMovie } from "../../context/movieContext/apiCalls";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import "./newProduct.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createWorkload } from "../../context/workloadContext/apiCalls";
+import { WorkloadContext } from "../../context/workloadContext/WorkloadContext";
+import "./newWorkload.css";
 
-export default function NewProduct() {
+export default function NewWorkload() {
   //const navigate = useNavigate();
-  const [movie, setMovie] = useState(null);
-
-  const {dispatch} = useContext(MovieContext)
+  const [workload, setWorkload] = useState(null);
+  const location = useLocation()
+  const {dispatch} = useContext(WorkloadContext)
 
   const handleChange = (e) =>{
     const value = e.target.value;
-    setMovie({...movie, [e.target.name]: value})
+    const ownerId = JSON.parse(localStorage.getItem("user")).accessToken
+    setWorkload({...workload, [e.target.name]: value, owner: ownerId})
   }
 
-  console.log(movie)
+  console.log(workload)
+  console.log(location)
 
   const HandleSubmit = (e) =>{
     e.preventDefault();
-    createMovie(movie, dispatch);
+    createWorkload(workload, dispatch);
     //navigate('/courses')
   }
 

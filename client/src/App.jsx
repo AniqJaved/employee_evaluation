@@ -5,6 +5,7 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import WorkloadList from './pages/workloadlist/WorkloadList';
 import Workload from './pages/workload/Workload'
+import NewWorkload from './pages/newWorkload/NewWorkload'
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 const App = () => {
   const user = false; //Only if user is true then he will be able to see the /movies,/series,/watch,  //If no user then Navigate will redirect the user to register or login
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" replace />}/>
         <Route path='/workload' element={<WorkloadList/>}/>
         <Route path="/workload/:workloadId" element={<Workload />}/>
+        <Route path="/newworkload" element={<NewWorkload />}/>
         {user && 
           <>
             <Route path='/movies' element={<Home type="movie"/>}/> {/* This route will not be having effect of proxy so /movies will simply mean to add the /movies to localhost:3000 that is of client_2,it means proxy will be having effect only on axios */}

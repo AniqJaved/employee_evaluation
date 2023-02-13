@@ -26,9 +26,7 @@ export default function WorkloadList() {
   useEffect(()=>{
     getWorkload(dispatch);
   }, [dispatch]);
-  console.log(workload)
-
-
+  
   const columns = [
     { field: "owner", headerName: "ID", width: 90 },
     {
@@ -39,7 +37,6 @@ export default function WorkloadList() {
         return (
           <div className="userListUser">
             {params.row.employeeName}
-            {console.log(params.row.employeeName)}
           </div>
         );
       },
@@ -65,10 +62,9 @@ export default function WorkloadList() {
                   );
                 })
               }
-      </ul>
+            </ul>
           </div>
         );
-        console.log(params)
       },
     },
     {
@@ -78,8 +74,13 @@ export default function WorkloadList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/workload/" + params.row._id}>
-              <button className="userListEdit">Edit</button>
+            <Link 
+              to={{
+                pathname:"/workload/" + params.row._id, 
+                state: { row: JSON.stringify(params.row) }
+                }}
+                >
+                <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="userListDelete"

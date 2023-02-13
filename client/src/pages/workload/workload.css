@@ -58,13 +58,19 @@
 }
 
 .productInfoItem {
-  width: 150px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .productInfoKey{
   margin-right: 20px;
+}
+
+.productInfoKeyCourse{
+  margin-right: 20px;
+  margin-top: 14px;
 }
 
 .productInfoValue {
@@ -131,4 +137,26 @@
   color:white;
   font-weight: 600;
   cursor: pointer;
+}
+
+.courseListul{
+  margin: 0;
+  padding-left: 0;  /* add padding-left: 0; to remove the space on left side of the ul*/
+  font-size: 0;
+  display: contents;
+}
+
+.courseListli{
+  display: flex;
+  line-height: 3em;
+  width: auto;
+  padding: 0 1em;
+  font-size: 16px;
+}
+
+.userListUser {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 400px
 }

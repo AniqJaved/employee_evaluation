@@ -14,6 +14,22 @@ export const getWorkloadFailure = () =>({
     type: "GET_WORKLOAD_FAILURE"
 });
 
+//CREATE WORKLOAD
+export const createWorkloadStart = () =>({
+    type: "CREATE_WORKLOAD_START"
+});
+
+
+export const createWorkloadSuccess = (workload) =>({
+    type: "CREATE_WORKLOAD_SUCCESS",
+    payload: workload,
+});
+
+
+export const createWorkloadFailure = () =>({
+    type: "CREATE_WORKLOAD_FAILURE"
+});
+
 
 //DELETE WORKLOAD
 
