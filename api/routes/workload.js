@@ -9,6 +9,10 @@ const verifyToken = require("../verifyToken");
 //ADD WORKLOAD
 router.post("/", verifyToken, async(req,res) => {
     if(req.user.isAdmin){
+        // const newworkload = new Workload({
+        //     ...req.body,
+        //     owner: req.user._id
+        // })
         const newworkload = new Workload(req.body);
         try{
             const savedWorkload = await newworkload.save();
@@ -22,12 +26,11 @@ router.post("/", verifyToken, async(req,res) => {
     }
 })
 
-//GET WORKLOAD
 
-router.get("/find/:id", async (req,res)=>{
-    try{
-        const workload = await Workload.findById(req.params.id);
-        const workloadInfo = workload._doc; 
+//GET WORKLOAD BY OWNER ID
+router.get("/find/:id", verifyToken, async (req,res)=>{
+    try{ 
+        const workloadInfo = await Workload.findOne({ owner: req.params.id }).populate("courseDetails.courseId")
         res.status(200).json(workloadInfo)
     }
     catch(err){

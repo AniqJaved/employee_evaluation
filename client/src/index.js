@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { UserContextProvider } from '../src/context/userContext/UserContext';
 import { AuthContextProvider } from '../src/context/authContext/AuthContext';
 import { CourseContextProvider } from '../src/context/courseContext/CourseContext';
+import { WorkloadContextProvider } from '../src/context/workloadContext/WorkloadContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <UserContextProvider>
       <AuthContextProvider>
         <CourseContextProvider>
-          <App />
+          <WorkloadContextProvider>
+            <App />
+          </WorkloadContextProvider>
         </CourseContextProvider>
       </AuthContextProvider>
     </UserContextProvider>
