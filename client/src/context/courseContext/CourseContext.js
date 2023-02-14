@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 export const CourseContext = createContext(INITIAL_STATE);
 
 export const CourseContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(CourseReducer, INITIAL_STATE); //useReducer is used to store the state of the user. The AuthReducer is the function which will check the state, INITIAL_STATE is used to store the user initial state. The result is store in "state"
+    const [state, dispatch2] = useReducer(CourseReducer, INITIAL_STATE); //useReducer is used to store the state of the user. The AuthReducer is the function which will check the state, INITIAL_STATE is used to store the user initial state. The result is store in "state"
                                                                       //dispatch is bascially a function just like in case of useState, this function allows us to update the state variable.
     
     return ( 
@@ -21,7 +21,7 @@ export const CourseContextProvider = ({ children }) => {
             courses: state.courses,
             isFetching: state.isFetching,
             error: state.error,
-            dispatch
+            dispatch2
         }}
     >
         {children}

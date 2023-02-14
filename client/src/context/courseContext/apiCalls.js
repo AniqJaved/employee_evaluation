@@ -16,8 +16,6 @@ export const getCourses = async (dispatch) => {
                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,  //Here we are fetching jwt token from the local storage that we have stored in case of the AuthContext
             },
         });
-
-        //console.log(localStorage.getItem("user"));
         dispatch(getCoursesSuccess(res.data));
     }
     catch(err){

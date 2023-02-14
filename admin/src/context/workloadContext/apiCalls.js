@@ -25,7 +25,7 @@ export const getWorkloads = async (dispatch) => {
 }
 
 
-//DELETE USER
+//DELETE WORKLOAD
 
 export const deleteWorkload = async (id, dispatch) => {
     dispatch(deleteWorkloadStart());
