@@ -4,7 +4,7 @@
 
 ### Description
 
-This is a a employee evaluation web app where an employee can create its workload. This workload will can be accessed by administration of that particular department. On basis of the workload provided the system will generate a value to determine wether the particular person is over or under burdened. Person from the administration can also provide with dynamic data like course which will be same for the particular department. 
+This is an employee evaluation web app where an employee can create its workload. This workload will be accessed by administration of that particular department. On basis of the workload provided the system will generate a value to determine whether the particular person is over or under burdened. Person from the administration can also provide with dynamic data like course which will be same for that particular department. 
 
 
 ## Set up Project Requirements
