@@ -1,23 +1,36 @@
 import './App.css';
+import { useContext } from 'react';
 import Home from './pages/home/Home';
 import Watch from './pages/watch/Watch';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import WorkloadList from './pages/workloadlist/WorkloadList';
 import Workload from './pages/workload/Workload'
-import NewWorkload from './pages/newWorkload/NewWorkload'
+import NewWorkload from './pages/newWorkload/NewWorkload';
+import Topbar from './components/topbar/Topbar'
+import  {AuthContext}  from './context/authContext/AuthContext';
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 const App = () => {
-  const user = false; //Only if user is true then he will be able to see the /movies,/series,/watch,  //If no user then Navigate will redirect the user to register or login
+  const {user} = useContext(AuthContext); //Only if user is true then he will be able to see the /movies,/series,/watch,  //If no user then Navigate will redirect the user to register or login
+  // const isUserVal = user.user ? true : false;
+  // console.log(isUserVal)
+  // const isUserBool = 0;
+  // if(isUserVal != null){
+  //   const isUserBool = true
+  // }
+  // else{
+  //   const isUserBool = false
+  // }
   return (
   <Router>
+    <Topbar/>
       <Routes>
-        <Route path='/' element={user ? <Home /> : <Navigate to="/register" replace />}/>  
+        <Route path='/' element={user ? <Navigate to="/workload" /> : <Navigate to="/register" replace />}/>  
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" replace />}/>
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" replace />}/>
-        <Route path='/workload' element={<WorkloadList/>}/>
-        <Route path="/workload/:workloadId" element={<Workload />}/>
-        <Route path="/newworkload" element={<NewWorkload />}/>
+        <Route path='/workload' element={user ? <WorkloadList/> : <Navigate to="/" replace />}/>
+        <Route path="/workload/:workloadId" element={user ? <Workload /> : <Navigate to="/" replace />}/>
+        <Route path="/newworkload" element={user ? <NewWorkload /> : <Navigate to="/" replace />}/>
         {user && 
           <>
             <Route path='/movies' element={<Home type="movie"/>}/> {/* This route will not be having effect of proxy so /movies will simply mean to add the /movies to localhost:3000 that is of client_2,it means proxy will be having effect only on axios */}

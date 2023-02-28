@@ -84,7 +84,7 @@ export default function WorkloadList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={{pathname:"/workload/" + params.row._id, workload: params.row}}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline

@@ -8,6 +8,7 @@ import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import WorkloadList from "./pages/workloadlist/WorkloadList";
+import Workload from "./pages/workload/Workload"
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
@@ -22,12 +23,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
+        <Route path="/login">
           {user ? <Redirect to="/" /> : <Login />}
         </Route>
-        {user && 
-          <>
-            <Topbar />
+        <Route path="/">
+          {user ? (
+            <>
+              <Topbar />
               <div className="container">
                 <Sidebar />
                 <Route exact path="/">
@@ -48,6 +50,12 @@ function App() {
                 <Route path="/workloads">
                   <WorkloadList />
                 </Route>
+                <Route path="/workload/:workloadId">
+                  <Workload />
+                </Route>
+                <Route path="/newworkload">
+                  <NewProduct />
+                </Route>
                 <Route path="/product/:productId">
                   <Product />
                 </Route>
@@ -55,8 +63,9 @@ function App() {
                   <NewProduct />
                 </Route>
               </div>
-          </> 
-        }
+            </>
+          ) : <Redirect to="/login" />}
+        </Route>
       </Switch>
     </Router>
   );

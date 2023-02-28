@@ -1,11 +1,11 @@
-import { useContext, useState, useHistory } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import "./newProduct.css";
 
 export default function NewProduct() {
-  //const navigate = useNavigate();
+  const history = useHistory();
   const [movie, setMovie] = useState(null);
 
   const {dispatch} = useContext(MovieContext)
@@ -20,7 +20,7 @@ export default function NewProduct() {
   const HandleSubmit = (e) =>{
     e.preventDefault();
     createMovie(movie, dispatch);
-    //navigate('/courses')
+    history.push("/courses");
   }
 
   return (
@@ -32,7 +32,7 @@ export default function NewProduct() {
           <input type="text" placeholder="CFP" name="title" onChange={handleChange}/>
         </div>
         <div className="addProductItem">
-          <label>Course No</label>
+          <label>Course No (Only Numbers Allowed)</label>
           <input type="text" placeholder="Course Number" name="courseNo" onChange={handleChange}/>
         </div>
         <div className="addProductItem">

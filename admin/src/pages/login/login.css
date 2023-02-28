@@ -23,3 +23,10 @@
     padding: 5px;
     cursor: pointer;
 }
+
+.wrapper{
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

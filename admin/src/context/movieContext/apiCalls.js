@@ -43,13 +43,34 @@ export const createMovie = async (movie, dispatch) => {
             },
         });
 
-        //console.log(localStorage.getItem("user"));
+        console.log(res.data);
         dispatch(createMovieSuccess(res.data));
     }
     catch(err){
         dispatch(createMovieFailure());
     }
 }
+
+
+//Update MOVIE
+
+// export const updateMovie = async (movie, dispatch) => {
+//     dispatch(updateMovieStart());
+
+//     try{
+//         const res = await axios.post("/courses", movie, {
+//             headers: { 
+//                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,  //Here we are fetching jwt token from the local storage that we have stored in case of the AuthContext
+//             },
+//         });
+
+//         //console.log(localStorage.getItem("user"));
+//         dispatch(createMovieSuccess(res.data));
+//     }
+//     catch(err){
+//         dispatch(createMovieFailure());
+//     }
+// }
 
 
 

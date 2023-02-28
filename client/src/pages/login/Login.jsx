@@ -13,6 +13,7 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         login({email,password}, dispatch);
+        console.log(email)
         navigate()
     }
     
@@ -20,7 +21,7 @@ const Login = () => {
     <div className='login'>
         <div className="top">
             <div className="wrapper">
-                <img className='logo' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="" />
+                
             </div>
         </div>
         <div className="container">
@@ -29,8 +30,6 @@ const Login = () => {
                 <input type="text" placeholder='Email or phone number' onChange={(e) => setEmail(e.target.value)}/>
                 <input type="text" placeholder='Password' onChange={(e) => setPassword(e.target.value)}/>
                 <button className="loginButton" onClick={handleLogin} disabled={isFetching}>Sign In</button>
-                <span>New to Netflix? <b>Sign up now</b></span>
-                <small>This page is protected by Google reCaptha to ensure you are not a bot.<b> Learn more</b></small>
             </form>
             
         </div>

@@ -17,6 +17,11 @@ export default function Login() {
   return (
     <>
   <div className="login">
+    <div className="top">
+      <div className="wrapper">
+        <h1>Login</h1>
+      </div>
+    </div>
     <form className="loginForm">
         <input type="text" placeholder='email' className="loginInput" onChange={(e) => setEmail(e.target.value)}/>
         <input type="password" placeholder='password' className="loginInput" onChange={(e) => setPassword(e.target.value)}/>
