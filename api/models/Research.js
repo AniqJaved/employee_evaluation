@@ -26,4 +26,11 @@ const ResearchSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
+ResearchSchema.virtual('users', {
+    ref: 'User',
+    localField: 'owner',
+    foreignField: '_id',
+    justOne: true
+  });
+
 module.exports = mongoose.model("Research", ResearchSchema)

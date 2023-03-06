@@ -21,7 +21,7 @@ const WorkloadSchema = new mongoose.Schema(
             courseContribution: {
                 type: Number
             }                        
-        }],
+        }]
     },
     {timestamps: true}
 );

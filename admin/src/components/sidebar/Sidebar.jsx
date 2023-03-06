@@ -51,6 +51,12 @@ export default function Sidebar() {
                 Workloads
               </li>
             </Link>
+            <Link to="/researchs" className="link">
+              <li className="sidebarListItem">
+                <AttachMoney className="sidebarIcon" />
+                Researchs
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

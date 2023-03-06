@@ -6,6 +6,7 @@ const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const courseRoute = require('./routes/courses')
 const workloadRoute = require('./routes/workload')
+const researchRoute = require('./routes/research')
 
 
 
@@ -39,6 +40,9 @@ app.use("/api/courses", courseRoute);
 
 //Path for worload router file
 app.use("/api/workload", workloadRoute);
+
+//Path for research router file
+app.use("/api/research", researchRoute);
 
 
 

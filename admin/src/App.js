@@ -8,6 +8,7 @@ import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import WorkloadList from "./pages/workloadlist/WorkloadList";
+import ResearchList from "./pages/researchlist/ResearchList";
 import Workload from "./pages/workload/Workload"
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
@@ -61,6 +62,9 @@ function App() {
                 </Route>
                 <Route path="/newproduct">
                   <NewProduct />
+                </Route>
+                <Route path="/researchs">
+                  <ResearchList />
                 </Route>
               </div>
             </>
