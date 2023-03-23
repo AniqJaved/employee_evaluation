@@ -37,7 +37,7 @@ router.get("/", verifyToken ,async (req,res)=>{
     
     if(req.user.isAdmin){
         try{
-            const researchs = query ? await Research.find().populate("owner").sort({_id:-1}).limit(10) : await Research.find().populate("owner"); //sort({_id:-1}) it will sort from last to first and will return the latest data.
+            const researchs = query ? await Research.find().populate("owner").populate("researchProject.researchProjectConfig").populate("journal.journalConfig").populate("conf.confConfig").populate("book.bookConfig").populate("patent.patentConfig").populate("techReport.techReportConfig").populate("devProduct.devProductConfig").sort({_id:-1}).limit(10) : await Research.find().populate("owner").populate("researchProject.researchProjectConfig").populate("journal.journalConfig").populate("conf.confConfig").populate("book.bookConfig").populate("patent.patentConfig").populate("techReport.techReportConfig").populate("devProduct.devProductConfig"); //sort({_id:-1}) it will sort from last to first and will return the latest data.
             res.status(200).json(researchs) 
         }
         catch(err){

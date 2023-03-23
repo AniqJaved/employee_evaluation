@@ -7,6 +7,7 @@ const userRoute = require('./routes/users')
 const courseRoute = require('./routes/courses')
 const workloadRoute = require('./routes/workload')
 const researchRoute = require('./routes/research')
+const configRoute = require('./routes/config')
 
 
 
@@ -43,6 +44,9 @@ app.use("/api/workload", workloadRoute);
 
 //Path for research router file
 app.use("/api/research", researchRoute);
+
+//Path for research router file
+app.use("/api/config", configRoute);
 
 
 

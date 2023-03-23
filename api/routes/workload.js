@@ -36,7 +36,14 @@ router.get("/", verifyToken ,async (req,res)=>{
     
     if(req.user.isAdmin){
         try{
-            const workloads = query ? await Workload.find().populate("courseDetails.courseId").sort({_id:-1}).limit(10) : await Workload.find().populate("courseDetails.courseId"); //sort({_id:-1}) it will sort from last to first and will return the latest data.
+            // const workloads = await Workload.find().populate({
+            //         path: 'creditHour.creditHourTypeId',
+            //         model: 'Config',
+            //         select: 'creditHour._id'
+            //       });
+
+            const workloads = query ? await Workload.find().populate("courseDetails.courseId").populate("creditHour.creditHourTypeId").populate("degree.degreeConfig").populate("managerialSection.managerialPositionConfig").sort({_id:-1}).limit(10) : await Workload.find().populate("courseDetails.courseId").populate("creditHour.creditHourTypeId").populate("degree.degreeConfig").populate("managerialSection.managerialPositionConfig"); //sort({_id:-1}) it will sort from last to first and will return the latest data.
+            //const workloads = query ? await Workload.find().populate('creditHour.creditHourTypeId', 'classType typeContribution').sort({_id:-1}).limit(10) : await Workload.find().populate('creditHour.creditHourTypeId', 'classType typeContribution');
             res.status(200).json(workloads) 
         }
         catch(err){

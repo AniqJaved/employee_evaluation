@@ -1,6 +1,6 @@
 import React, { useState,useContext, useEffect } from 'react';
-import { CourseContext } from "../../context/courseContext/CourseContext";
-import { getCourses } from "../../context/courseContext/apiCalls";
+import { CourseContext } from "../../../context/courseContext/CourseContext";
+import { getCourses } from "../../../context/courseContext/apiCalls";
 
 
 export default function AddCourseForm ({onAddCourse}) {

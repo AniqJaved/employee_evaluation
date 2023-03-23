@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import WorkloadList from './pages/workloadlist/WorkloadList';
 import Workload from './pages/workload/Workload'
 import NewWorkload from './pages/newWorkload/NewWorkload';
+import NewResearch from './pages/newResearch/NewResearch';
 import Topbar from './components/topbar/Topbar'
 import  {AuthContext}  from './context/authContext/AuthContext';
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/workload' element={user ? <WorkloadList/> : <Navigate to="/" replace />}/>
         <Route path="/workload/:workloadId" element={user ? <Workload /> : <Navigate to="/" replace />}/>
         <Route path="/newworkload" element={user ? <NewWorkload /> : <Navigate to="/" replace />}/>
+        <Route path="/newresearch" element={user ? <NewResearch /> : <Navigate to="/" replace />}/>
         {user && 
           <>
             <Route path='/movies' element={<Home type="movie"/>}/> {/* This route will not be having effect of proxy so /movies will simply mean to add the /movies to localhost:3000 that is of client_2,it means proxy will be having effect only on axios */}

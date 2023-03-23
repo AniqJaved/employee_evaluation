@@ -4,19 +4,67 @@ const ResearchSchema = new mongoose.Schema(
     {
         bs : {type: Number},
         ms: {type: Number},
-        researchProject: {type: String}, //It will have value associated with it. For example 1-10Million will have a workload similarly, 10-20 Million will have a different workload.
-        intJournal: {type: Number},
-        natJournal: {type: Number},
-        intConf: {type: Number},
-        natConf: {type: Number},
-        intBook: {type: Number},
-        natBook: {type: Number},
-        chapBook: {type: Number},
-        intPatent: {type: Number},
-        natPatent: {type: Number},
-        revJournal: {type: Number},
-        techReport: {type: Number},
-        devProduct: {type: Number},
+        researchProject:[{
+            researchProjectConfig:{
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: 'Config' 
+            }
+        }],
+        journal: [{
+            journalConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfJournal: {
+                type: Number
+            }
+        }],
+        conf: [{
+            confConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfConf: {
+                type: Number
+            }
+        }],
+        book: [{
+            bookConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfBook: {
+                type: Number
+            }
+        }],
+        patent: [{
+            patentConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfPatent: {
+                type: Number
+            }
+        }],
+        techReport: [{
+            techReportConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfTechReport: {
+                type: Number
+            }
+        }],
+        devProduct: [{
+            devProductConfig: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Config'
+            },
+            noOfDevProduct: {
+                type: Number
+            }
+        }],
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,

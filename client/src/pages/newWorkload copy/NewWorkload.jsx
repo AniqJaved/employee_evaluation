@@ -1,9 +1,9 @@
 import { useContext, useState, useHistory, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AddCourseForm from "../../components/workload/addCourseForm/AddCourseForm";
-import AddDegreeForm from "../../components/workload/addDegreeForm/AddDegreeForm";
-import AddCreditHourForm from "../../components/workload/addCreditHourForm/AddCreditHourForm";
-import AddManagerialForm from "../../components/workload/addManagerialForm/AddManagerialForm";
+import AddDegreeForm from "../../components/addDegreeForm/AddDegreeForm";
+import AddCreditHourForm from "../../components/addCreditHourForm/AddCreditHourForm";
+import AddManagerialForm from "../../components/addManagerialForm/AddManagerialForm";
 import { createWorkload } from "../../context/workloadContext/apiCalls";
 import { WorkloadContext } from "../../context/workloadContext/WorkloadContext";
 import { CourseContext } from "../../context/courseContext/CourseContext";
