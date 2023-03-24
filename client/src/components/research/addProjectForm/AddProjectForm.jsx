@@ -45,7 +45,7 @@ export default function AddPojectForm ({onAddProject}) {
                         {
                         projectList.map((project) => (
                         <option key={project._id} value={project._id}>
-                            {project.projectGrant}
+                            {project.researchType}
                         </option>
                         ))}
                     </select>

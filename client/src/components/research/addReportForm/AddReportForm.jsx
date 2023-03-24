@@ -63,7 +63,7 @@ export default function AddReportForm ({onAddReport}) {
                                         handleSelection(report._id, e.target.checked)
                                     }
                                     />
-                                    {report.reportType}
+                                    {report.researchType}
                                 </label>
                             </li>
                             ))}

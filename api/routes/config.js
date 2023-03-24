@@ -5,6 +5,8 @@ const Workload = require("../models/Workload");
 const Config = require("../models/Config")
 const CryptoJS = require("crypto-js");
 const verifyToken = require("../verifyToken");
+var ObjectId = require('mongodb').ObjectId;
+
 
 
 //ADD CONFIG
@@ -44,6 +46,67 @@ router.get("/", verifyToken, async(req,res)=>{
     }
     else{
         res.status(403).json("You are not allowed!");
+    }
+})
+
+
+
+router.put("/update", verifyToken ,async (req,res)=>{
+    if(req.user.isAdmin){
+        try{
+
+            const updateFields = req.body; // an array containing the fields to update for each document
+            // //console.log(updateFields)
+            const config = await Config.find();
+            // const configCollection = req.app.locals.db.collection('config');
+            //console.log(configCollection)
+
+            // //console.log(config)
+            // updateFields.forEach((updateDoc) => {
+            //     const docToUpdate = config.find((doc) => doc._id.toString() == updateDoc._id);
+            //     console.log(updateDoc)
+            //     if (docToUpdate) {
+            //         // const returnobj = Object.assign(docToUpdate, updateDoc);
+            //         // return docToUpdate.save();
+            //         const {_id, ...updates} = updateDoc; // Destructure the data object and get the _id and updates
+            //         console.log(_id)
+            //         const filter = {_id: new ObjectId(_id)}; // Create the filter for the update
+            //         console.log(filter)
+            //         const result = Config.updateOne(filter, {$set: updates}); // Update the config object
+            //         console.log(`Modified ${result.modifiedCount} document(s).`);
+            //     }
+            // });
+
+            // // Promise.all(updatePromises).then((results) => {
+            // //     console.log('update results:', results);
+            // //     res.status(200).json(config);
+            // //   }).catch((error) => {
+            // //     console.log('update error:', error);
+            // //     res.status(500).send('Error updating config');
+            // //   });
+            // res.status(200).json(config);
+
+
+            for (let i = 0; i < updateFields.length; i++) {
+                const {_id, ...updates} = updateFields[i]; // Destructure the data object and get the _id and updates
+                const filter = {_id: new ObjectId(_id)}; // Create the filter for the update // Here we are converting the _id that we are getting from the admin end to ObjectId to match the format that is present in the Config 
+                const result = await Config.updateOne(filter, {$set: updates}, {new: true} );
+                
+              }
+          
+              // Fetch and send the updated config array as the response
+              const updatedConfig = await Config.find();
+              res.status(200).json(updatedConfig);
+
+
+        }
+        catch(err){
+            res.status(500).json(err)
+        }
+    }
+
+    else{
+        res.status(403).json("You not allowed!");
     }
 })
 

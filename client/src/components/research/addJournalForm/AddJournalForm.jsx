@@ -46,7 +46,7 @@ export default function AddJournalForm ({onAddJournal}) {
                         {
                         journalList.map((journal) => (
                         <option key={journal._id} value={journal._id}>
-                            {journal.journalType}
+                            {journal.researchType}
                         </option>
                         ))}
                     </select>

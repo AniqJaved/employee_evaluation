@@ -46,7 +46,7 @@ export default function AddPatentForm ({onAddPatent}) {
                         {
                         patentList.map((patent) => (
                         <option key={patent._id} value={patent._id}>
-                            {patent.patentType}
+                            {patent.researchType}
                         </option>
                         ))}
                     </select>

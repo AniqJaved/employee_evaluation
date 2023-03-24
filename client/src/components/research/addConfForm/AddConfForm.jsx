@@ -46,7 +46,7 @@ export default function AddConfForm ({onAddConf}) {
                         {
                         confList.map((conf) => (
                         <option key={conf._id} value={conf._id}>
-                            {conf.confType}
+                            {conf.researchType}
                         </option>
                         ))}
                     </select>

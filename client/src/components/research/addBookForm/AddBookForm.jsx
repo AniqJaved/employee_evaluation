@@ -46,7 +46,7 @@ export default function AddBookForm ({onAddBook}) {
                         {
                         bookList.map((book) => (
                         <option key={book._id} value={book._id}>
-                            {book.bookType}
+                            {book.researchType}
                         </option>
                         ))}
                     </select>

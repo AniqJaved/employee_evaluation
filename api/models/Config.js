@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const ConfigSchema = new mongoose.Schema(
     {
-        configType: {type: String}
-        
+        configType: {type: String},
+        researchType: {type: String},
+        contribution: {type: Number}
     },
     {timestamps: true}
 );

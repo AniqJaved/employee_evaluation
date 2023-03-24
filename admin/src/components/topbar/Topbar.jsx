@@ -22,6 +22,15 @@ export default function Topbar() {
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
+            <Link to="/config" className="link">
+              <button 
+              className='loginButton' 
+              >
+                Config
+              </button>
+            </Link>
+          </div>
+          <div className="topbarIconContainer">
             <Link to="/login" className="link">
               <button 
               className='loginButton' 

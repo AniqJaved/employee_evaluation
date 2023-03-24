@@ -13,6 +13,7 @@ import Workload from "./pages/workload/Workload"
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
+import Config from "./pages/config/Config"
 import { useContext } from "react"
 import  {AuthContext}  from './context/authContext/AuthContext';
 
@@ -65,6 +66,9 @@ function App() {
                 </Route>
                 <Route path="/researchs">
                   <ResearchList />
+                </Route>
+                <Route path="/config">
+                  <Config />
                 </Route>
               </div>
             </>

@@ -63,7 +63,7 @@ export default function AddProductForm ({onAddProduct}) {
                                         handleSelection(product._id, e.target.checked)
                                     }
                                     />
-                                    {product.productType}
+                                    {product.researchType}
                                 </label>
                             </li>
                             ))}
