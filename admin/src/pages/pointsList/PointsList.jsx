@@ -1,4 +1,4 @@
-import "./workloadList.css";
+import "./pointsList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext} from "react";
 import { WorkloadContext } from "../../context/workloadContext/WorkloadContext";
+import { ResearchContext } from "../../context/researchContext/ResearchContext";
 import { useEffect } from "react";
 import { deleteWorkload, getWorkloads } from "../../context/workloadContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
@@ -19,6 +20,7 @@ export default function WorkloadList() {
 
   
   const {workloads, dispatch} = useContext(WorkloadContext)
+  //const {researchs,dispatch} = useContext(ResearchContext)
   const [titles, setTitles] = useState([]);
   // const handleDelete = (id) => {
   //   setData(data.filter((item) => item.id !== id));
@@ -54,72 +56,7 @@ export default function WorkloadList() {
     },
     { field: "semester", headerName: "Semester", width: 200 },
     { field: "year", headerName: "Year", width: 200 },
-    { 
-      field: "creditHour", 
-      headerName: "Credit Hour", 
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <ul className="courseListul">
-              {params.row.creditHour.map((creditDetail, index) => {
-                return (
-                  <li key={index} className="courseListli">
-                    {index+1+". "}{creditDetail.creditHourTypeId.researchType ? `${creditDetail.creditHourTypeId.researchType} (${creditDetail.noOfCreditHour})` : 'No credit hour assigned'}
-                  </li>
-                  );
-                })
-              }
-      </ul>
-          </div>
-        );
-        console.log(params)
-      } 
-    },
-    { 
-      field: "degreeProgram", 
-      headerName: "Degree Program", 
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <ul className="courseListul">
-              {params.row.degree.map((degreeDetail, index) => {
-                return (
-                  <li key={index} className="courseListli">
-                    {index+1+". "}{degreeDetail.degreeConfig.researchType ? `${degreeDetail.degreeConfig.researchType} (${degreeDetail.noOfStudents})` : 'No degree program assigned'}
-                  </li>
-                  );
-                })
-              }
-      </ul>
-          </div>
-        );
-        console.log(params)
-      } 
-    },
-    { 
-      field: "managerialResponsibility", 
-      headerName: "Managerial Responsibility", 
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <ul className="courseListul">
-              {params.row.managerialSection.map((managerialSectionDetail, index) => {
-                return (
-                  <li key={index} className="courseListli">
-                    {index+1+". "}{managerialSectionDetail.managerialPositionConfig.researchType ? managerialSectionDetail.managerialPositionConfig.researchType : 'No managerial position assigned'}
-                  </li>
-                  );
-                })
-              }
-      </ul>
-          </div>
-        );
-        console.log(params)
-      } 
-    },
+    { field: "managerialResponsibility", headerName: "Managerial Responsibility", width: 200 },
     {
       field: "title",
       headerName: "Course Title",

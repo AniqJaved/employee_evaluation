@@ -44,7 +44,7 @@ export default function AddManagerialForm ({onAddManagerial}) {
                     {
                     managerialList.map((pos) => (
                     <option key={pos._id} value={pos._id}>
-                        {pos.managerialPosition}
+                        {pos.researchType}
                     </option>
                     ))}
                 </select>

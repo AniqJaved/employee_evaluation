@@ -23,6 +23,10 @@ export default function AddCreditHourForm ({onAddCreditHour}) {
     const [noOfCreditHours, setNoOfCreditHours] = useState('');
 
     const [isLoading, setIsLoading] = useState(true);
+
+
+
+
     const handleAddCreditHour = (event) => {
         event.preventDefault();
         if (selectedCreditHour && noOfCreditHours) {
@@ -31,6 +35,7 @@ export default function AddCreditHourForm ({onAddCreditHour}) {
             // setCourseContribution('');
         }
     };
+    
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -45,7 +50,7 @@ export default function AddCreditHourForm ({onAddCreditHour}) {
                     {
                     creditHourList.map((creditType) => (
                     <option key={creditType._id} value={creditType._id}>
-                        {creditType.classType}
+                        {creditType.researchType}
                     </option>
                     ))}
                 </select>

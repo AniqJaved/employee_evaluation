@@ -9,6 +9,7 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import WorkloadList from "./pages/workloadlist/WorkloadList";
 import ResearchList from "./pages/researchlist/ResearchList";
+import PointsList from "./pages/pointsList/PointsList"
 import Workload from "./pages/workload/Workload"
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
@@ -69,6 +70,9 @@ function App() {
                 </Route>
                 <Route path="/config">
                   <Config />
+                </Route>
+                <Route path="/points">
+                  <PointsList />
                 </Route>
               </div>
             </>

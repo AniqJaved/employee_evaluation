@@ -45,7 +45,7 @@ export default function AddDegreeForm ({onAddDegree}) {
                     {
                     degreeList.map((deg) => (
                     <option key={deg._id} value={deg._id}>
-                        {deg.degreeName}
+                        {deg.researchType}
                     </option>
                     ))}
                 </select>
