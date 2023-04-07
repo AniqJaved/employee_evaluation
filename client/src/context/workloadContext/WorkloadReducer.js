@@ -1,6 +1,8 @@
 const WorkloadReducer = (state, action) => {
     
     switch (action.type) {
+
+        //GET
         case "GET_WORKLOAD_START":
             return {
                 workload: [],
@@ -19,6 +21,9 @@ const WorkloadReducer = (state, action) => {
                 isFetching: false,
                 error: true
             };
+
+        
+        //CREATE
         
         case "CREATE_WORKLOAD_START":
             return {
@@ -38,6 +43,30 @@ const WorkloadReducer = (state, action) => {
                 isFetching: false,
                 error: true
             };
+
+        
+        //UPDATE  
+        case "UPDATE_WORKLOAD_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false
+            };
+        case "UPDATE_WORKLOAD_SUCCESS":
+            return {
+                ...state,
+                workload: action.payload,
+                isFetching: false,
+                error: false
+            };
+        case "UPDATE_WORKLOAD_FAILURE":
+            return {
+                workload: [],
+                isFetching: false,
+                error: true
+            };
+
+        //DELETE
         
         case "DELETE_WORKLOAD_START":
             return {

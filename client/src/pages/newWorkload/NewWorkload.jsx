@@ -4,7 +4,11 @@ import AddCourseForm from "../../components/workload/addCourseForm/AddCourseForm
 import AddDegreeForm from "../../components/workload/addDegreeForm/AddDegreeForm";
 import AddCreditHourForm from "../../components/workload/addCreditHourForm/AddCreditHourForm";
 import AddManagerialForm from "../../components/workload/addManagerialForm/AddManagerialForm";
-import { createWorkload } from "../../context/workloadContext/apiCalls";
+import CreditHourCard from "../../components/workload/creditHourCard/CreditHourCard";
+import ManagerialCard from "../../components/workload/managerialCard/ManagerialCard";
+import DegreeCard from "../../components/workload/degreeCard/DegreeCard";
+import CourseCard from "../../components/workload/courseCard/CourseCard";
+import { createWorkload, getWorkload } from "../../context/workloadContext/apiCalls";
 import { WorkloadContext } from "../../context/workloadContext/WorkloadContext";
 import { CourseContext } from "../../context/courseContext/CourseContext";
 import { getCourses } from "../../context/courseContext/apiCalls";
@@ -13,20 +17,52 @@ import "./newWorkload.css";
 export default function NewWorkload() {
   //const navigate = useNavigate();
   
-  const [workload, setWorkload] = useState(null);
-  const {dispatch} = useContext(WorkloadContext)
+  //const [workload, setWorkload] = useState(null);
+  const {dispatch} = useContext(WorkloadContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [workload, setWorkload] = useState([])
   const [courseDetailsArray, setCourseDetailsArray] = useState([]);
   const [degreeDetailsArray, setDegreeDetailsArray] = useState([]);
   const [creditHourDetailsArray, setCreditHourDetailsArray] = useState([]);
   const [managerialDetailsArray, setManagerialDetailsArray] = useState([]);
   ////////////////
 
-  const {courses, dispatch2} = useContext(CourseContext)
+  //const {courses, dispatch2} = useContext(CourseContext)
 
   
-  useEffect(()=>{
-    getCourses(dispatch2);
-  }, [dispatch2]);
+  // useEffect(()=>{
+  //   getCourses(dispatch2);
+  // }, [dispatch2]);
+
+
+
+
+  //FETCHING WORKLOAD
+
+//   useEffect(()=>{
+//     getWorkload(dispatch)
+//     .then(() => setIsLoading(false))
+//     .catch((error) => console.error(error));
+// }, [dispatch]);
+
+// useEffect(() => {
+//   if (workload.length > 0) {
+//     setWorkloadObj(workload[0]);
+//     setCreditHourDetailsArray(workload[0].creditHour || []);
+//     setCourseDetailsArray(workload[0].courseDetails || []);
+//     setDegreeDetailsArray(workload[0].degree || []);
+//     setManagerialDetailsArray(workload[0].managerialSection || []);
+//   }
+// }, [workload]);
+
+// console.log(managerialDetailsArray)
+
+// console.log(workload)
+
+  
+  
+
+
 
 
   //ADD COURSE
@@ -84,10 +120,49 @@ export default function NewWorkload() {
 
   ////////////////
 
+  // REMOVE CREDIT HOUR
+
+  const handleRemoveCreditHour = (index) => {
+    setCreditHourDetailsArray(
+      creditHourDetailsArray.filter((_, i) => i !== index)
+    );
+  };
+
+
+  // REMOVE MANAGERIAL CARD
+
+  const handleRemoveManagerial = (index) => {
+    setManagerialDetailsArray(
+      managerialDetailsArray.filter((_, i) => i !== index)
+    );
+  };
+
+  // REMOVE DEGREE CARD
+
+  const handleRemoveDegree = (index) => {
+    setDegreeDetailsArray(
+      degreeDetailsArray.filter((_, i) => i !== index)
+    );
+  };
+
+
+  // REMOVE COURSE CARD
+
+  const handleRemoveCourse = (index) => {
+    setCourseDetailsArray(
+      courseDetailsArray.filter((_, i) => i !== index)
+    );
+  };
+
+
+
+
+  /////////////////
+
   const handleChange = (e) =>{
     const value = e.target.value;
     const ownerId = JSON.parse(localStorage.getItem("user"))._id
-    setWorkload({...workload, [e.target.name]: value, owner: ownerId})
+    setWorkload({...workload, [e.target.name]: value, owner: ownerId, creditHour:[...creditHourDetailsArray], courseDetails:[...courseDetailsArray], degree:[...degreeDetailsArray], managerialSection:[...managerialDetailsArray]  })
   }
 
 
@@ -97,10 +172,60 @@ export default function NewWorkload() {
     //navigate('/courses')
   }
   console.log(workload)
+
+ 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Workload</h1>
       <form className="addProductForm">
+        <div className="addProductItem">
+          <label>Managerial Responsibility</label>
+          <AddManagerialForm onAddManagerial={handleAddManagerial}/>
+          {managerialDetailsArray.map((managerialDetails, index) => (
+          <ManagerialCard
+            key={index}
+            managerialDetails={managerialDetails}
+            onRemove={() => handleRemoveManagerial(index)}
+          />
+          ))}
+        </div>
+        <div className="addProductItem">
+          <label>No Of Students</label>
+          <input type="text" placeholder="Degree" name="noOfStudents" onChange={handleChange}/>
+        </div>
+        <div className="addProductItem">
+          <label>Degree</label>
+          <AddDegreeForm onAddDegree={handleAddDegree}/>
+          {degreeDetailsArray.map((degreeDetails, index) => (
+          <DegreeCard
+            key={index}
+            degreeDetails={degreeDetails}
+            onRemove={() => handleRemoveDegree(index)}
+          />
+          ))}
+        </div>
+        <div className="addProductItem">
+          <label>Credit Hour</label>
+          <AddCreditHourForm onAddCreditHour={handleAddCreditHour}/>
+          {creditHourDetailsArray.map((creditHourDetails, index) => (
+          <CreditHourCard
+            key={index}
+            creditHourDetails={creditHourDetails}
+            onRemove={() => handleRemoveCreditHour(index)}
+          />
+          ))}
+        </div>
+        <div className="addProductItem">
+          <label>Course</label>
+          <AddCourseForm onAddCourse={handleAddCourse}/>
+          {courseDetailsArray.map((courseDetails, index) => (
+          <CourseCard
+            key={index}
+            courseDetails={courseDetails}
+            onRemove={() => handleRemoveCourse(index)}
+          />
+          ))}
+        </div>
         <div className="addProductItem">
           <label>Semester</label>
           <input type="text" placeholder="7" name="semester" onChange={handleChange}/>
@@ -112,26 +237,6 @@ export default function NewWorkload() {
         <div className="addProductItem">
           <label>Employee Name</label>
           <input type="text" placeholder="Ali Khan" name="employeeName" onChange={handleChange}/>
-        </div>
-        <div className="addProductItem">
-          <label>Managerial Responsibility</label>
-          <AddManagerialForm onAddManagerial={handleAddManagerial}/>
-        </div>
-        <div className="addProductItem">
-          <label>No Of Students</label>
-          <input type="text" placeholder="Degree" name="noOfStudents" onChange={handleChange}/>
-        </div>
-        <div className="addProductItem">
-          <label>Degree</label>
-          <AddDegreeForm onAddDegree={handleAddDegree}/>
-        </div>
-        <div className="addProductItem">
-          <label>Credit Hour</label>
-          <AddCreditHourForm onAddCreditHour={handleAddCreditHour}/>
-        </div>
-        <div className="addProductItem">
-          <label>Course</label>
-          <AddCourseForm onAddCourse={handleAddCourse}/>
         </div>
         <button onClick={HandleSubmit} className="addProductButton">Create</button>
       </form>

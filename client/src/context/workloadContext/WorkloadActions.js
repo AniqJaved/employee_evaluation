@@ -31,6 +31,24 @@ export const createWorkloadFailure = () =>({
 });
 
 
+//UPDATE WORKLOAD
+export const updateWorkloadStart = () =>({
+    type: "UPDATE_WORKLOAD_START"
+});
+
+
+export const updateWorkloadSuccess = (workload) =>({
+    type: "UPDATE_WORKLOAD_SUCCESS",
+    payload: workload,
+});
+
+
+export const updateWorkloadFailure = () =>({
+    type: "UPDATE_WORKLOAD_FAILURE"
+});
+
+
+
 //DELETE WORKLOAD
 
 export const deleteWorkloadStart = () =>({

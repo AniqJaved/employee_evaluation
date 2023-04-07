@@ -32,17 +32,41 @@ export default function Topbar() {
             </Link>
           </div>
           <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">2</span>
+            <Link to="/research" className="link">
+              <button 
+              className='loginButton' 
+              >
+                View Research
+              </button>
+            </Link>
           </div>
           <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
+            <Link to="/workload" className="link">
+              <button 
+              className='loginButton' 
+              >
+                View Workload
+              </button>
+            </Link>
           </div>
           <div className="topbarIconContainer">
-            <Settings />
+            <Link to="/newworkload" className="link">
+              <button 
+              className='loginButton' 
+              >
+                Add Workload
+              </button>
+            </Link>
           </div>
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
+          <div className="topbarIconContainer">
+            <Link to="/newresearch" className="link">
+              <button 
+              className='loginButton' 
+              >
+                Add Research
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

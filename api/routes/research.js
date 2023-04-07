@@ -22,7 +22,7 @@ router.post("/", verifyToken, async(req,res) => {
 //GET RESEARCH BY OWNER ID
 router.get("/find/:id", verifyToken, async (req,res)=>{
     try{ 
-        const researchInfo = await Research.findOne({ owner: req.params.id }).populate("owner")
+        const researchInfo = await Research.findOne({ owner: req.params.id }).populate("owner").populate("researchProject.researchProjectConfig").populate("journal.journalConfig").populate("conf.confConfig").populate("book.bookConfig").populate("patent.patentConfig").populate("techReport.techReportConfig").populate("devProduct.devProductConfig")
         res.status(200).json(researchInfo)
     }
     catch(err){

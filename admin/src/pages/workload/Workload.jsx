@@ -74,7 +74,7 @@ export default function Product() {
                 <label>Year</label>
                 <input type="text" placeholder={workload.year} />
                 <label>Managerial Responsibility</label>
-                <input type="text" placeholder={workload.managerialResponsibility} />
+                <input type="text" placeholder={workload.managerialSection[0].managerialPositionConfig.researchType}/>
                 <label>No Of Students</label>
                 <input type="text" placeholder={workload.noOfStudents} />
               </div>

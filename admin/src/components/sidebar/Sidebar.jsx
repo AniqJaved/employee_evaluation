@@ -57,6 +57,12 @@ export default function Sidebar() {
                 Researchs
               </li>
             </Link>
+            <Link to="/points" className="link">
+              <li className="sidebarListItem">
+                <AttachMoney className="sidebarIcon" />
+                Points
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

@@ -21,7 +21,7 @@ router.post("/", verifyToken, async(req,res) => {
 //GET WORKLOAD BY OWNER ID
 router.get("/find/:id", verifyToken, async (req,res)=>{
     try{ 
-        const workloadInfo = await Workload.findOne({ owner: req.params.id }).populate("courseDetails.courseId")
+        const workloadInfo = await Workload.findOne({ owner: req.params.id }).populate("courseDetails.courseId").populate("creditHour.creditHourTypeId").populate("degree.degreeConfig").populate("managerialSection.managerialPositionConfig");
         res.status(200).json(workloadInfo)
     }
     catch(err){
@@ -77,6 +77,27 @@ router.delete("/:id", verifyToken ,async (req,res)=>{
 
     else{
         res.status(403).json("You can delete only your workload!");
+    }
+})
+
+
+//UPDATE WORKLOAD
+
+router.put("/:owner", verifyToken ,async (req,res)=>{
+    try{
+        const updatedWorkload = await Workload.findOneAndUpdate(
+            { owner: req.params.owner }, 
+            {
+                $set: req.body,
+            },
+            {new: true}                 // $set will update the entries in database but will not return the updated entries. new: true will be returing the updated entries.
+            
+            );
+        
+        res.status(200).json(updatedWorkload)
+    }
+    catch(err){
+        res.status(500).json(err)
     }
 })
 

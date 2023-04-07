@@ -8,7 +8,11 @@ import {
     createWorkloadSuccess, 
     deleteWorkloadStart, 
     deleteWorkloadSuccess, 
-    deleteWorkloadFailure
+    deleteWorkloadFailure,
+    updateWorkloadStart, 
+    updateWorkloadSuccess, 
+    updateWorkloadFailure,
+
 } from "./WorkloadActions";
 
 //GET WORKLOAD BY USER ID
@@ -50,7 +54,29 @@ export const createWorkload = async (workload, dispatch) => {
 }
 
 
-//DELETE USER
+// UPDATE WORKLOAD
+
+export const updateWorkload = async (workload, dispatch) => {
+    dispatch(updateWorkloadStart());
+
+    try{
+        const owner = JSON.parse(localStorage.getItem("user"))._id;
+        const res = await axios.put(`/workload/${owner}`, workload, {
+            headers: { 
+                token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,  //Here we are fetching jwt token from the local storage that we have stored in case of the AuthContext
+            },
+        });
+
+        //console.log(localStorage.getItem("user"));
+        dispatch(updateWorkloadSuccess(res.data));
+    }
+    catch(err){
+        dispatch(updateWorkloadFailure());
+    }
+}
+
+
+//DELETE WORKLOAD
 
 export const deleteWorkload = async (id, dispatch) => {
     dispatch(deleteWorkloadStart());

@@ -82,10 +82,6 @@ export default function WorkloadList() {
                 >
                 <button className="userListEdit">Edit</button>
             </Link>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
           </>
         );
       },
